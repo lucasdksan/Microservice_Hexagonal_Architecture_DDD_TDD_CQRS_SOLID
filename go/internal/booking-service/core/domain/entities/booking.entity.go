@@ -28,7 +28,7 @@ func (b *Booking) currentStatus() enums.Status {
 	return b.status
 }
 
-func (b *Booking) ChangeState(action enums.Actions) {
+func (b *Booking) changeState(action enums.Actions) {
 	transition := struct {
 		status enums.Status
 		action enums.Actions
