@@ -1,7 +1,7 @@
 package entities
 
 type Guest struct {
-	Id      int
+	Id      uint `gorm:"primaryKey"`
 	Name    string
 	Surname string
 	Email   string

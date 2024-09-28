@@ -17,11 +17,13 @@ var transitions = map[struct {
 }
 
 type Booking struct {
-	Id       int
+	Id       uint `gorm:"primaryKey"`
 	PlacedAt time.Time
 	Start    time.Time
 	End      time.Time
 	status   enums.Status
+	GuestID  uint `gorm:"not null"`
+	RoomID   uint `gorm:"not null"`
 }
 
 func (b *Booking) CurrentStatus() enums.Status {

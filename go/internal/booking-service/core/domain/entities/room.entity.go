@@ -1,7 +1,7 @@
 package entities
 
 type Room struct {
-	Id            int
+	Id            uint `gorm:"primaryKey"`
 	Name          string
 	Level         int
 	InMaintenance bool
