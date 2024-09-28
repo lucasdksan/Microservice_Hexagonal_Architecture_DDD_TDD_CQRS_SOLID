@@ -8,6 +8,10 @@ export default class BookingEntity {
     public End: Date;
     private status: Status
 
+    constructor() {
+        this.status = Status.Created;
+    }
+
     currentStatus(): Status {
         return this.status;
     }
