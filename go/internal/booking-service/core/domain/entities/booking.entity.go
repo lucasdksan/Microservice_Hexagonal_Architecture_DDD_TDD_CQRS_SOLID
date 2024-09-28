@@ -24,11 +24,11 @@ type Booking struct {
 	status   enums.Status
 }
 
-func (b *Booking) currentStatus() enums.Status {
+func (b *Booking) CurrentStatus() enums.Status {
 	return b.status
 }
 
-func (b *Booking) changeState(action enums.Actions) {
+func (b *Booking) ChangeState(action enums.Actions) {
 	transition := struct {
 		status enums.Status
 		action enums.Actions
@@ -36,5 +36,11 @@ func (b *Booking) changeState(action enums.Actions) {
 
 	if newStatus, exists := transitions[transition]; exists {
 		b.status = newStatus
+	}
+}
+
+func NewBooking() *Booking {
+	return &Booking{
+		status: enums.Created,
 	}
 }
