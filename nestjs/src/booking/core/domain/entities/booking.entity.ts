@@ -4,8 +4,8 @@ import { Status } from "../enums/status.enum";
 export default class BookingEntity {
     public id: number;
     public placedAt: Date;
-    public Start: Date;
-    public End: Date;
+    public start: Date;
+    public end: Date;
     private status: Status
 
     constructor() {

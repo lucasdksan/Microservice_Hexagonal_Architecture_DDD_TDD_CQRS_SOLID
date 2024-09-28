@@ -2,7 +2,7 @@ package main
 
 import (
 	"book/internal/booking-service/adapters"
-	"book/internal/config"
+	"book/internal/shared/infrastructure/config"
 	"fmt"
 	"log"
 )
