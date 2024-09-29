@@ -1,12 +1,13 @@
 import BookingEntity from "@/booking/core/domain/entities/booking.entity";
 import { Actions } from "@/booking/core/domain/enums/actions.enum";
 import { Status } from "@/booking/core/domain/enums/status.enum";
+import { BookingDataBuilder } from "@/shared/domain/testing/helpers/booking-data-builder";
 
 describe("Tests on the booking entity", ()=>{
     let booking:BookingEntity;
 
     beforeEach(()=> {
-        booking = new BookingEntity();
+        booking = new BookingEntity(BookingDataBuilder({}));
     });
 
     it("Should Always Start With Created Status", ()=>{

@@ -1,14 +1,19 @@
+import { Entity } from "@/shared/domain/entities/entity";
 import { Actions } from "../enums/actions.enum";
 import { Status } from "../enums/status.enum";
 
-export default class BookingEntity {
-    public id: number;
-    public placedAt: Date;
-    public start: Date;
-    public end: Date;
+export type BookingProps = {
+    id: number;
+    placedAt: Date;
+    start: Date;
+    end: Date;
+};
+
+export default class BookingEntity extends Entity<BookingProps> {    
     private status: Status
 
-    constructor() {
+    constructor(public readonly props: BookingProps) {
+        super(props);
         this.status = Status.Created;
     }
 
