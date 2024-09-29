@@ -1,18 +1,18 @@
 package application
 
 import (
+	"book/internal/booking-service/adapters/repositories"
 	"book/internal/booking-service/core/application/guest/dtos"
 	"book/internal/booking-service/core/application/guest/requests"
 	"book/internal/booking-service/core/application/guest/responses"
-	domainPorts "book/internal/booking-service/core/domain/ports"
 	sharedResponse "book/internal/shared/application/responses"
 )
 
 type GuestManager struct {
-	guestRepository domainPorts.IGuestRepository
+	guestRepository *repositories.GuestRepository
 }
 
-func NewGuestManager(guestRepository domainPorts.IGuestRepository) *GuestManager {
+func NewGuestManager(guestRepository *repositories.GuestRepository) *GuestManager {
 	return &GuestManager{
 		guestRepository: guestRepository,
 	}

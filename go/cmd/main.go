@@ -2,18 +2,28 @@ package main
 
 import (
 	"book/internal/booking-service/adapters"
+	"book/internal/booking-service/adapters/repositories"
+	"book/internal/booking-service/consumers/controllers"
+	"book/internal/booking-service/core/application"
 	"book/internal/shared/infrastructure/config"
-	"fmt"
+	"book/internal/shared/infrastructure/router"
 	"log"
 )
 
 func main() {
-	config.LoadingEnv()
+	if err := config.LoadingEnv(); err != nil {
+		log.Fatal("fail in read file .env!")
+	}
+
 	db, err := adapters.NewHotelDbContext(config.Bank_connection_string)
+
+	guestRepository := repositories.NewGuestRepository(db.DB)
+	guestManager := application.NewGuestManager(guestRepository)
+	guestController := controllers.NewGuestController(guestManager)
 
 	if err != nil {
 		log.Fatal()
 	}
 
-	fmt.Print(db)
+	router.Initialize(guestController)
 }

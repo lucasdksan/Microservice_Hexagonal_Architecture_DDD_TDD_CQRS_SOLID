@@ -1,7 +1,6 @@
 package config
 
 import (
-	"log"
 	"os"
 	"strconv"
 
@@ -14,11 +13,11 @@ var (
 	Secret_key             []byte
 )
 
-func LoadingEnv() {
+func LoadingEnv() error {
 	var err error
 
 	if err = godotenv.Load(); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	Port, err = strconv.Atoi(os.Getenv("API_PORT"))
@@ -30,4 +29,6 @@ func LoadingEnv() {
 	Bank_connection_string = os.Getenv("DATABASE_URL")
 
 	Secret_key = []byte(os.Getenv("SECRET_KEY"))
+
+	return nil
 }
