@@ -2,7 +2,6 @@ package application
 
 import (
 	"book/internal/booking-service/adapters/repositories"
-	"book/internal/booking-service/core/application/guest/dtos"
 	"book/internal/booking-service/core/application/guest/requests"
 	"book/internal/booking-service/core/application/guest/responses"
 	sharedResponse "book/internal/shared/application/responses"
@@ -20,18 +19,10 @@ func NewGuestManager(guestRepository *repositories.GuestRepository) *GuestManage
 
 func (gm GuestManager) CreateGuest(request requests.GuestRequest) responses.GuestResponse {
 	guest := request.Data.MapToEntity()
-	result, err := gm.guestRepository.Create(guest)
+	err := gm.guestRepository.Create(guest)
 
 	if err != nil {
 		return responses.GuestResponse{
-			Data: dtos.GuestDTO{
-				Id:         result,
-				Name:       guest.Name,
-				Surname:    guest.Surname,
-				Email:      guest.Email,
-				IdNumber:   guest.Document.IdNumber,
-				IdTypeCode: uint(guest.Document.DocumentType),
-			},
 			Response: sharedResponse.Response{
 				Success:   false,
 				Message:   "There was an error when saving to DB",
@@ -41,14 +32,6 @@ func (gm GuestManager) CreateGuest(request requests.GuestRequest) responses.Gues
 	}
 
 	return responses.GuestResponse{
-		Data: dtos.GuestDTO{
-			Id:         result,
-			Name:       guest.Name,
-			Surname:    guest.Surname,
-			Email:      guest.Email,
-			IdNumber:   guest.Document.IdNumber,
-			IdTypeCode: uint(guest.Document.DocumentType),
-		},
 		Response: sharedResponse.Response{
 			Success: true,
 		},

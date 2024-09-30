@@ -7,17 +7,16 @@ import (
 )
 
 type GuestDTO struct {
-	Id         uint
-	Name       string
-	Surname    string
-	Email      string
-	IdNumber   string
-	IdTypeCode uint
+	Id         uint   `json:"id"`
+	Name       string `json:"name"`
+	Surname    string `json:"surname"`
+	Email      string `json:"email"`
+	IdNumber   string `json:"idNumber"`
+	IdTypeCode uint   `json:"idTypeCode"`
 }
 
 func (g GuestDTO) MapToEntity() entities.Guest {
 	return entities.Guest{
-		Id:      g.Id,
 		Name:    g.Name,
 		Surname: g.Surname,
 		Email:   g.Email,

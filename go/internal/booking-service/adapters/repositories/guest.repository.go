@@ -16,12 +16,12 @@ func NewGuestRepository(db *gorm.DB) *GuestRepository {
 	}
 }
 
-func (gr *GuestRepository) Create(guest entities.Guest) (uint, error) {
+func (gr *GuestRepository) Create(guest entities.Guest) error {
 	if err := gr.db.Create(guest).Error; err != nil {
-		return 0, err
+		return err
 	}
 
-	return guest.Id, nil
+	return nil
 
 }
 

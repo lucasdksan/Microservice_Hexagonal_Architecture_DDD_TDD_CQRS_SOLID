@@ -2,6 +2,9 @@ package controllers
 
 import (
 	"book/internal/booking-service/core/application"
+	"book/internal/booking-service/core/application/guest/dtos"
+	"book/internal/booking-service/core/application/guest/requests"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,5 +20,10 @@ func NewGuestController(guestManager *application.GuestManager) GuestController 
 }
 
 func (gc *GuestController) PostGuestController(ctx *gin.Context) {
+	request := dtos.GuestDTO{}
+	ctx.BindJSON(&request)
 
+	gc.guestManager.CreateGuest(requests.GuestRequest{Data: request})
+
+	fmt.Print(request)
 }

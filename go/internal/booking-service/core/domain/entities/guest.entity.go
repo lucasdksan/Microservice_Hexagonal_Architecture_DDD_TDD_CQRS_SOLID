@@ -5,9 +5,9 @@ import (
 )
 
 type Guest struct {
-	Id       uint `gorm:"primaryKey"`
-	Name     string
-	Surname  string
-	Email    string
+	Id       uint                `gorm:"primaryKey"`
+	Name     string              `json:"name"`
+	Surname  string              `json:"surname"`
+	Email    string              `json:"email"`
 	Document valueobjects.Person `gorm:"embedded"`
 }
